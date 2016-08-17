@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>reactive</title>
+</head>
+<body>
+
+<div id="example">
+  
+</div>
+<script type="text/babel">
+
+var Bacon = React.createClass({
+    render: function(){
+      return(
+        <div>
+          <h2>This is a component.</h2>
+          <p>Yup</p>
+        </div>
+        );
+    }
+  });
+
+var Movie = React.createClass({
+    render: function(){
+      return(
+        <div>
+          <h1>{this.props.title}</h1>
+          <h2>{this.props.genre}</h2>
+        </div>
+        );
+    }
+  });
+  
+
+  ReactDOM.render(
+  <div>
+    <Bacon/>
+    <Bacon/>
+    <Bacon/>
+    <Movie title="Avatar" genre="sci-fi action"/>
+    <Movie title="Vanilla Sky" genre="analytical thriller romance"/>
+    <Movie title="The Matrix" genre="analytical thriller"/>
+    <Movie title="Inception" genre="analytical thriller"/>
+    <Movie title="The Secret Life of Pets" genre="feel-good"/>
+  </div>, document.getElementById('example'));
+
+
+  
+
+</script>
+
+
+
+
+
+
+
+
+  <script src="https://npmcdn.com/react@15.3.0/dist/react.min.js"></script>
+  <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script> <!-- older transpiler 5.8.24 works with this app-->
+
+</body>
+</html>
+
+<!-- first need react.js cdn and also react-dom.js cdn
+then we need the babel transpiler because React is written in JSX, JSX is not understood by the browser which only understands JS, so the transpiler translates the JSX into JS to be understood by the browser, in this case an older transpiler of babel 5.8.24 works with this app-->
+<!-- script tag where React code will be written will have type="text/babel"
+-->
+<!--Render basically takes a bit of html and places it into a target where you want to display it, in this case, the id="example"
+the first parameter is just html, in this case, h1, this is also basically our React component
+the next parameter and the only other one it takes is where we're going to display this, in this case the div with the id of example, via document.GetElementById which will take our React code which in this case is h1 Marco and display into the div with the id of example-->
+<!-- Components are just part of the website, anything that's part of a website that's made with React are made with components, so the entire app is made up of components (just different parts of the webpage)
+to make a component is via making a variable ___ = React.createClass and inside that is where we actually create the component, since a component is just essentially part of the website, all it is, is pretty much html
+so in this case, all it needs to do is return some html, we do this with a function called render, in this case we're returning an h2 component
+so whenever we use the component Bacon, it displays an h2
+so now we want to substitute the h1 Marco with the component Bacon to display an h2, we literally just substitute the component Bacon in a self-closing tag form <Bacon/> and it will display the h2
+so now the component Bacon will the h2 in the target element id="example"
+Basically the entire application will be made up of individual parts called components.
+At the heart of a component, it essentially just returns a chunk of html-->
+<!--Now for returning multiple components...
+Be mindful of the fact that every single component can only return 1 parent element. For example, you cannot use an h1 and a p1 within the same component. 
+To achieve being able to use multiple parent elements in 1 component, they must be wrapped in a div, because now we're only returning 1 parent element, in this case the div that they're wrapped in.
+Also, a render can only essentially display 1 parent element as well. So if we want to display multiple components, we have to wrap them in a div parent element. Now we can have multiple Bacon components rendered-->
+<!--***sidenote that I discovered: even if you comment out certain syntax like components, they are still recognized and can throw an error, I guess because it's in ES6 even though it's being transpiled
+*** Also be sure to define components before calling them to be rendered on the DOM, or else they will be undefined.-->
+<!--Now properties allow you to customize your components.
+A good example of this is if you wanted to make this application like NetFlix, or any application that you wanted to display movies, of course you don't want to make a component to display a movie, and then have to make another different component to display a different movie that had a different title, etc. You would basically want to make the blueprint or a template for one component and customize it in different ways, which is what properties allow you to do.
+So you can actually add attributes to the component. In this case we add the title="Avatar" attribute to the Movie component h1 and also a genre="action" attribute to Movie component h2 and we display them by typing them in curly {} braces and accessing them through this.props.___ so for the title, we type this.props.title and also for genre we type this.props.genre
+So now if we want to display 5 different movies, we could render 5 different components and each of these components have different properties
+LEFT OFF AT COMPLETION OF REACTJS TUTORIALS FOR BEGINNERS 5 - PROPS
+
