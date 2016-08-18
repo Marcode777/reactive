@@ -32,6 +32,24 @@ var Movie = React.createClass({
     }
   });
   
+  var Comment = React.createClass({
+
+    edit: function(){
+      alert("editing comment");
+    },
+    remove: function(){
+      alert("removing comment");
+    }
+    render: function(){
+      return(
+        <div className="commentContainer">
+          <div className="commentText">Text of whatever</div>
+          <button onClick=(this.edit) className="button-primary">Edit</button>
+          <button onClick=(this.remove) className="button-danger">Remove</button>
+        </div>
+        );
+    }
+  });
 
   ReactDOM.render(
   <div>
@@ -89,5 +107,15 @@ Also, a render can only essentially display 1 parent element as well. So if we w
 A good example of this is if you wanted to make this application like NetFlix, or any application that you wanted to display movies, of course you don't want to make a component to display a movie, and then have to make another different component to display a different movie that had a different title, etc. You would basically want to make the blueprint or a template for one component and customize it in different ways, which is what properties allow you to do.
 So you can actually add attributes to the component. In this case we add the title="Avatar" attribute to the Movie component h1 and also a genre="action" attribute to Movie component h2 and we display them by typing them in curly {} braces and accessing them through this.props.___ so for the title, we type this.props.title and also for genre we type this.props.genre
 So now if we want to display 5 different movies, we could render 5 different components and each of these components have different properties
-LEFT OFF AT COMPLETION OF REACTJS TUTORIALS FOR BEGINNERS 5 - PROPS
 
+EventHandling: Here we'll try to create a "sticky note app" where the user can add new notes, delete or edit notes, sort of like my contactbook app. 
+We create a new component via a variable = comment, which is going to essentially a block that will have text on it depending on the comment, which will have a button for editing and deleting it. We'll have some dummy data by putting some static image just to make sure it works and is displayed how we want it to. This whole thing will be in a div, with, in this case, our pre-made style called commentContainer, so for the class name, it's set = to commentContainer. 
+Note that we can add attributes in JSX just like we would in normal HTML, however, the reason we can't use class here is because class is already a reserved keyword in JavaScript. Because in JavaScript, class actually means something. So in JSX, we use className. So most of your other attributes will be fine just like normal HTML, but sometimes, if they clash with JavaScript, it could be because of JSX.
+So now inside this comment div will be another div which will just be text of whatever, and two buttons.
+We'll give the div with text a className of commentText. All it does is it makes it bold and gives some spacing between the text and buttons. Now the button classes, the edit button will have className = button-primary, and the remove button will have className = button-danger, which were already premade. 
+Now what we need to do is make something happen whenever the user clicks the buttons. So before we can add an on-click attribute, we actually need to make functions, because essentially we're going to say that whenever you click this, call a function.
+Now we already have a function called render, which is the function responsible for displaying HTML. But we can actually make our own custom functions and make them whatever we want. So under the Comment component, we'll make one called edit, which is just equal to a function, which can do whatever we want. Right now, we'll keep thing simple and make an alert pop-up that says "editing comment". We'll also make a remove function with the appropriate pop-up as well.
+So right now we have an edit function and a remove function which will display a pop-up whenever they are called. 
+Now we need to link the buttons to the functions. We do this by adding another attribute called onClick. So how do we do that? Well, since this is a function from the same class, we just need to type this, a dot separator and then the function name, as in this.edit 
+The same goes for the remove button.
+LEFT OFF AT REACT JS TUTORIALS FOR BEGINNERS - 6 - EVENT HANDLING at thenewboston
