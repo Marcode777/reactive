@@ -39,29 +39,36 @@ var Movie = React.createClass({
     },
     remove: function(){
       alert("removing comment");
-    }
+    },
     render: function(){
       return(
         <div className="commentContainer">
-          <div className="commentText">Text of whatever</div>
-          <button onClick=(this.edit) className="button-primary">Edit</button>
-          <button onClick=(this.remove) className="button-danger">Remove</button>
+          <div className="commentText">{this.props.children}</div>
+          <button onClick={this.edit} className="button-primary">Edit</button>
+          <button onClick={this.remove} className="button-danger">Remove</button>
         </div>
         );
     }
   });
 
+  // ReactDOM.render(
+  // <div>
+  //   <Bacon/>
+  //   <Bacon/>
+  //   <Bacon/>
+  //   <Movie title="Avatar" genre="sci-fi action"/>
+  //   <Movie title="Vanilla Sky" genre="analytical thriller romance"/>
+  //   <Movie title="The Matrix" genre="analytical thriller"/>
+  //   <Movie title="Inception" genre="analytical thriller"/>
+  //   <Movie title="The Secret Life of Pets" genre="feel-good"/>
+  // </div>, document.getElementById('example'));
   ReactDOM.render(
-  <div>
-    <Bacon/>
-    <Bacon/>
-    <Bacon/>
-    <Movie title="Avatar" genre="sci-fi action"/>
-    <Movie title="Vanilla Sky" genre="analytical thriller romance"/>
-    <Movie title="The Matrix" genre="analytical thriller"/>
-    <Movie title="Inception" genre="analytical thriller"/>
-    <Movie title="The Secret Life of Pets" genre="feel-good"/>
-  </div>, document.getElementById('example'));
+  <div className="board">
+    <Comment> Hey name is Bucky</Comment>
+    <Comment> Beans</Comment>
+    <Comment> Tuna</Comment>
+  </div>, 
+    document.getElementById('example'));
 
 
   
@@ -116,6 +123,16 @@ We'll give the div with text a className of commentText. All it does is it makes
 Now what we need to do is make something happen whenever the user clicks the buttons. So before we can add an on-click attribute, we actually need to make functions, because essentially we're going to say that whenever you click this, call a function.
 Now we already have a function called render, which is the function responsible for displaying HTML. But we can actually make our own custom functions and make them whatever we want. So under the Comment component, we'll make one called edit, which is just equal to a function, which can do whatever we want. Right now, we'll keep thing simple and make an alert pop-up that says "editing comment". We'll also make a remove function with the appropriate pop-up as well.
 So right now we have an edit function and a remove function which will display a pop-up whenever they are called. 
-Now we need to link the buttons to the functions. We do this by adding another attribute called onClick. So how do we do that? Well, since this is a function from the same class, we just need to type this, a dot separator and then the function name, as in this.edit 
+Now we need to link the buttons to the functions. We do this by adding another attribute called onClick, keep in mind the curly braces. So how do we do that? Well, since this is a function from the same class, we just need to type this, a dot separator and then the function name, as in this.edit 
 The same goes for the remove button.
-LEFT OFF AT REACT JS TUTORIALS FOR BEGINNERS - 6 - EVENT HANDLING at thenewboston
+Now we need to render this. Now we're taking all these comments and surrounding them inside a board div, which is just for styling to give it a color background. So now, whenever we want to write a new comment, it will be in the Comment components.
+So now when we click the edit or remove buttons, we get an alert pop-up that states "editing comment" or "removing comment". So now we know that our event handlers are working properly.
+Now from here, instead of just having the static text in className ="commentText", we actually want to take whatever text is in between the Comment tags and take that and display it in the "commentText" of the Comment component for the comment. 
+So now we have "hey name is Bucky", "Beans" and "Tuna" just to have 3 different comments in the Comment tags. 
+So to access the data in the Comment tags to be able to use them in the className="commentText" of the Comment compnonent, remember that any data that is in between the opening tag and closing tags of the Comment components within the className="board" divs are called children. 
+Remember that whenever we want to use properties, we just use this.props and then the name of the property as in this.props.children 
+So now we change the "Text of whatever" text in between the commentText tags in the Comment component  and replace it with curly braces this.props.children as in {this.props.children}
+So the commentText now gets the children, which are the static text in between the Comment tags, and for each Comment component render, displays them in between the div tags with class="commentText".
+
+So in summary, we have done event handling, in which we can create custom functions,and whenever something happens, in this case clicking on the buttons, the functions are called upon by onClick (or some other event handler, however, in this case, we use onClick).
+We have also covered how to pass data in between the tags, in this case, the Comment tags, and access them through the children property.
