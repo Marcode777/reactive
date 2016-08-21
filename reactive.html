@@ -8,7 +8,33 @@
 <div id="example">
   
 </div>
+
+<div id="container">
+
+</div>
 <script type="text/babel">
+
+var Checkbox = React.createClass({
+
+    getInitialState: function(){
+      return{checked:true}
+    },
+
+    render: function(){
+      var msg;
+        if(this.state.checked){
+          msg = 'checked'
+        } else {
+          msg = 'unchecked'
+        }
+        return(
+          <div>
+            <input type="checkbox" defaultChecked={this.state.checked}/ >
+            <h3>Checkbox is {msg}</h3>
+          </div>
+        )
+    }
+});
 
 var Bacon = React.createClass({
     render: function(){
@@ -22,6 +48,7 @@ var Bacon = React.createClass({
   });
 
 var Movie = React.createClass({
+
     render: function(){
       return(
         <div>
@@ -67,8 +94,9 @@ var Movie = React.createClass({
     <Comment> Hey name is Bucky</Comment>
     <Comment> Beans</Comment>
     <Comment> Tuna</Comment>
+    <Checkbox/>
   </div>, 
-    document.getElementById('example'));
+    document.getElementById('container'));
 
 
   
@@ -139,4 +167,25 @@ We have also covered how to pass data in between the tags, in this case, the Com
 
 Next is State. States are a way to customize components, which you can also do with properties, however, the difference is that states can change. For example, if you give a component a custom property, whenever you create it, it's set for its life. For example, if you create a button with a property that makes it green, it will be green for the rest of its life. 
 Now if you wanted to make a button could change colors everytime the user hovered over it, properties can't be used for that, because their values can't change. Whenever you have a value that needs changing on your component, you need to use state. So basically, whenever you want something to stay the same, you use properties; whenever you want something that changes, you need to use states. 
-LEFT OFF AT PART 7 of REACT TUTORIAL FOR BEGINNERS thenewboston.
+So now we're going to make a component named checkbox. Because whenever we have a checkbox, it can be checked or unchecked. Since this bit of text is going to change, we will use state instead of property.
+So for the message which will be equal to "checked" or "unchecked", we'll use if statements.
+The way we access states are pretty much the same as properties, however, instead of props, we just use state, as in "this.state.____". So it will be "this.state.checked" and we're going to say that this can be either true or false. So if it's checked, then the msg = 'checked' and else msg 'unchecked'.
+Before we go further in creating this component and rendering the html, we will build another function to show how to set the initial value of a state.
+There is a built-in function called getInitialState(), so whenever you call this function, its job is to set the initial state of your component.
+It returns an object of your states. Now we're only going to have one state in here, which is checked, now we can set this equal to true or false to start with, however, we're just going to set this equal to true just because we feel like it. 
+We're going to set it up where whenever this is true, then that means that the user has a checkbox checked, if it's false, then it means that they didn't check it, so it's good for filling out forms and stuff like that. Right now we have one state ,checked and it's equal to true. And if you want to add another one, called something like Bacon and set it equal to 32, you can. You can add as many states as you want.
+So now that we have a state variable, what we can do now is actually return some html. 
+So we're going to have a checkbox and some text below it, so since we're going to have multiple elements, we need to wrap them inside a parent div. And for the input the type will be "checkbox". We're going to make it simple and basic at first just so we have something on the screen that works and then later we can do more sophisticated things. 
+So this will be the checkbox, and it's a valid checkbox right now, and beneath it we'll say "checkbox is" and it will either say checked or unchecked. In order to do that, all we need to do is to output the variable which is msg in brackets.
+Now to actually render this, we place it into the render function by placing the Checkbox component into the ReactDom.render function. This will place it into the whole div with class "container", before in the previous examples, we were placing Comment components into the whole div with class "example" in the ReactDom.render function with document.getElementByID.
+  ***note that the syntax for return when using booleans is with curly brackets as in return{checked:true} and with just parentheses for actually just return as in returning something as return(<div><input type="checkbox"/></div)***
+Right now it says checkbox is checked. Why is it saying that even though it's not checked? It's because we didn't add any logic yet. It's because we just went ahead and rendered this component and the initial state of checked is equal to true. If it was set to false, then it would say checkbox is unchecked. So it's working. 
+Now we actually have to add the logic to make it work correctly.
+You see that whenever we load the page for the very first time, the default behavior of html and chrome is to have the actual checkboxes(not what the message is saying, but the actual checkboxes), unchecked. 
+Well we can actually override that value with a built-in value called defaultChecked where checked, in input type, can actually be set to true or false, by typing it in. However, what we want to set it equal to is the state of the checkbox, whether it's checked or unchecked, or true or false. We do that by accessing the state variable via this.state.checked or vice versa.
+*So now, when the message is saying it's unchecked, the actual checkbox will also be unchecked, and when the message is saying it's checked, the actual checkbox will also be checked. So both are now working congruently and concurrently.*
+Now we have one more bit of logic to work out. That is we want to say that whenever the user clicks the actual checkbox, we want the message, in the curly brackets, {} to change.
+We do that again, with eventhandlers, however, instead of onClick, it will use onChange, and that gets called whenever the user clicks on the actual checkbox, whenever they check it or whenever they uncheck it. 
+So in the input, we'll type onChange=(this.handleChecked), we're also going to have to build a function for it.
+So now we build a function called handleChecked for it.
+LEFT OFF AT 8:11 of REACT JS TUTORIALS - 7
