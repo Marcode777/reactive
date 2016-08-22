@@ -20,6 +20,10 @@ var Checkbox = React.createClass({
       return{checked:true}
     },
 
+    handleChecked: function(){
+      this.setState({checked: !this.state.checked})
+    },
+
     render: function(){
       var msg;
         if(this.state.checked){
@@ -29,7 +33,7 @@ var Checkbox = React.createClass({
         }
         return(
           <div>
-            <input type="checkbox" defaultChecked={this.state.checked}/ >
+            <input type="checkbox" onChange={this.handleChecked} defaultChecked={this.state.checked}/ >
             <h3>Checkbox is {msg}</h3>
           </div>
         )
@@ -61,13 +65,24 @@ var Movie = React.createClass({
   
   var Comment = React.createClass({
 
+    getInitialState: function(){
+      return{editing:false}
+    },
+
     edit: function(){
-      alert("editing comment");
+      // alert("editing comment");
+      this.setState({editing:true});
     },
     remove: function(){
-      alert("removing comment");
+      console.log("removing comment");
+      // alert("removing comment");
     },
-    render: function(){
+
+    save: function(){
+      this.setState({editing:false});
+    },
+
+    renderNormal: function(){
       return(
         <div className="commentContainer">
           <div className="commentText">{this.props.children}</div>
@@ -75,7 +90,34 @@ var Movie = React.createClass({
           <button onClick={this.remove} className="button-danger">Remove</button>
         </div>
         );
+    },
+
+    renderForm: function(){
+      return(
+        <div className="commentContainer">
+          <textarea defaultValue={this.props.children}></textarea>
+          <button onClick={this.save} className="button-success">Save</button>
+        </div>
+        );
+    },
+
+    render: function(){
+      if(this.state.editing){
+        return this.renderForm();
+      } else{
+        return this.renderNormal();
+      }
     }
+
+    // render: function(){
+    //   return(
+    //     <div className="commentContainer">
+    //       <div className="commentText">{this.props.children}</div>
+    //       <button onClick={this.edit} className="button-primary">Edit</button>
+    //       <button onClick={this.remove} className="button-danger">Remove</button>
+    //     </div>
+    //     );
+    // }
   });
 
   // ReactDOM.render(
@@ -91,7 +133,7 @@ var Movie = React.createClass({
   // </div>, document.getElementById('example'));
   ReactDOM.render(
   <div className="board">
-    <Comment> Hey name is Bucky</Comment>
+    <Comment> Hey name is Marco.</Comment>
     <Comment> Beans</Comment>
     <Comment> Tuna</Comment>
     <Checkbox/>
@@ -178,7 +220,7 @@ So now that we have a state variable, what we can do now is actually return some
 So we're going to have a checkbox and some text below it, so since we're going to have multiple elements, we need to wrap them inside a parent div. And for the input the type will be "checkbox". We're going to make it simple and basic at first just so we have something on the screen that works and then later we can do more sophisticated things. 
 So this will be the checkbox, and it's a valid checkbox right now, and beneath it we'll say "checkbox is" and it will either say checked or unchecked. In order to do that, all we need to do is to output the variable which is msg in brackets.
 Now to actually render this, we place it into the render function by placing the Checkbox component into the ReactDom.render function. This will place it into the whole div with class "container", before in the previous examples, we were placing Comment components into the whole div with class "example" in the ReactDom.render function with document.getElementByID.
-  ***note that the syntax for return when using booleans is with curly brackets as in return{checked:true} and with just parentheses for actually just return as in returning something as return(<div><input type="checkbox"/></div)***
+  ***note that the syntax for return when using booleans is with curly brackets as in "return{checked:true}" and with just parentheses for actually just return as in returning something as "return(<div><input type="checkbox"/></div)"***
 Right now it says checkbox is checked. Why is it saying that even though it's not checked? It's because we didn't add any logic yet. It's because we just went ahead and rendered this component and the initial state of checked is equal to true. If it was set to false, then it would say checkbox is unchecked. So it's working. 
 Now we actually have to add the logic to make it work correctly.
 You see that whenever we load the page for the very first time, the default behavior of html and chrome is to have the actual checkboxes(not what the message is saying, but the actual checkboxes), unchecked. 
@@ -186,6 +228,21 @@ Well we can actually override that value with a built-in value called defaultChe
 *So now, when the message is saying it's unchecked, the actual checkbox will also be unchecked, and when the message is saying it's checked, the actual checkbox will also be checked. So both are now working congruently and concurrently.*
 Now we have one more bit of logic to work out. That is we want to say that whenever the user clicks the actual checkbox, we want the message, in the curly brackets, {} to change.
 We do that again, with eventhandlers, however, instead of onClick, it will use onChange, and that gets called whenever the user clicks on the actual checkbox, whenever they check it or whenever they uncheck it. 
-So in the input, we'll type onChange=(this.handleChecked), we're also going to have to build a function for it.
+So in the input, we'll type "onChange=(this.handleChecked)", we're also going to have to build a function for it.
 So now we build a function called handleChecked for it.
-LEFT OFF AT 8:11 of REACT JS TUTORIALS - 7
+So now with this function, what we want to do is whenever the use checks the checkbox, we want to set the state of the checked, which is either true or false, and we want to set it equal to the opposite of what it was before. We say that because if it's checked and they clicked it, then we want to set it to false, if it already is false and they checked it, then we want to set it to true. 
+Now to do that, whenever we want to change the state of a component variable, we use "this.setState({})". This takes an object and sets its state. So here, instead of just passing in the value of checked, we'll take the current value of checked and make it the opposite. All we do is take "this.state.checked" and set an exclamation point to it to make it the opposite as in "this.set.State({checked: !this.state.checked})". So in summary, when we click this, it's going to get the current state of the checkbox if it's checked or not, and then it will set the new state equal to the opposite of it. So this way, whenever the checkbox is unchecked, the msg will also say it's unchecked, and whenever the checkbox is checked, the msg will also it's checked.
+***An important thing to note is that, whenever you check it or uncheck, why does it automatically re-render already? In most programs, and even before in this app, I had to refresh the page in order to see the new results. A great thing about REACT is that we don't need to explicitly say that whenever a state changes, it has to refresh a certain part of the page. REACT automatically watches for states and where they can change, and whenever the states change, that part of the webpage is automatically refreshed.***
+So in summary, state is a lot like property, however, properties cannot change dynamically, a property set to something is that property like a background color, it remains that way unless you change the code. States can change dynamically, as in the state of a checkbox.
+Adding State to Components: 
+**remember there are two separate targets in document.getElementById, they are "container" and "example" 
+Back to the sticky note program, we are going to apply states to it. We want two different modes, a normal, default mode where things are static the way they are, and an editing mode, whenever the user clicks the edit button, instead of just having static text, a form will be displayed where they can edit the comment, write a new comment, so on and so forth. So basically we'll have the sticky note program switch between two differet modes, or states. 
+To do this, whenever we want to use state, the first thing we need is that "getInitialState" function. By default, we're going to have this out of editing mode and in normal, default mode. Because whenever the user first loads this webpage, we don't want forms popping out, we just want the default text. So we're going to have the editing state set to false as in "return{editing:false}".
+So, to think about the logic, the first thing is that whenever the user clicks the edit button, then the edit callback is called. So what we want to do in terms of state is, that whenever they click the edit button, we want to set editing to true instead of false, obviously. So in the edit function we use "this.setState({editing:true})" Now we just change the remove function alert to a console log just because they're annoying.
+So now in normal mode, when they click edit, they enter the editing mode, however, we don't want the edit button still there because they're already editing, so we're going to have another button that says save, so whenever they're editing and they're done, they can click save and it will save the text. So we're going make another function, which will be called save, and all it's going to do for the moment is it's going to set editing equal to false. So whenever they're done editing, they'll click save and it will take them out of editing mode.
+Now on the render function, it's currently displaying the default mode, however, in editing mode we want it to display a different setting where it displays a form so the user can edit the text.
+So what we can do is actually make two different functions, we'll call them renderForm and renderNormal. Now we've created the rendernormal function.(at this point, i've commented out the render function from the previous examples) Now we've also created the renderForm function which has a "<textarea></textarea>" set of tags, we want to give it a default text of whatever the comment is. So to do that, all we have to do is say "defaultValue" and set it equal to "{this.props.children}" from the commentText div from renderNormal. And also instead of the standard buttons of edit and remove, we just want a save button, and for its onClick, instead of continuing to be in the editing mode, we want to save our text so we change it from '{this.edit}' to '{this.save}'. So when that happens, it will call save and it will change your mode to normal mode, and take you out of editing mode. 
+Now the last thing that we want to do for this...you see these are just custom functions right here, we actually didn't even call them yet, whenever we actually use the component, it always looks for this function called render. So inside it, we just have to write a little bit of logic and it's just going to say if you are in editing mode, display this, if not, display this. 
+So we have the displays taken care of. However, we still have one more issue, and it's whenever the user actually edits the text and clicks save, it actually doesn't change the text. We'll work on that next.
+LEFT OFF AT REACT  - 9 - refs
+
