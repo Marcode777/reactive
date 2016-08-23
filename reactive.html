@@ -79,6 +79,8 @@ var Movie = React.createClass({
     },
 
     save: function(){
+      var val = this.refs.newText.value;
+      console.log("New comment:"+ val);
       this.setState({editing:false});
     },
 
@@ -95,7 +97,7 @@ var Movie = React.createClass({
     renderForm: function(){
       return(
         <div className="commentContainer">
-          <textarea defaultValue={this.props.children}></textarea>
+          <textarea ref="newText" defaultValue={this.props.children}></textarea>
           <button onClick={this.save} className="button-success">Save</button>
         </div>
         );
@@ -245,4 +247,15 @@ So what we can do is actually make two different functions, we'll call them rend
 Now the last thing that we want to do for this...you see these are just custom functions right here, we actually didn't even call them yet, whenever we actually use the component, it always looks for this function called render. So inside it, we just have to write a little bit of logic and it's just going to say if you are in editing mode, display this, if not, display this. 
 So we have the displays taken care of. However, we still have one more issue, and it's whenever the user actually edits the text and clicks save, it actually doesn't change the text. We'll work on that next.
 LEFT OFF AT REACT  - 9 - refs
+Whenever the user edits the comments, we want to allow them to pretty much type some new comment in the commeent form and then hit save, and i will save and it'll save it.
+So the action is actually divided into two parts in our code. So the first first thing we're going to need to do is we're going to get the value of whatever they typed in whenever they hit save, this is Step 1.
+Then Step 2 is we'll be taking that value and setting it equal to this chunk of text right there on top of the buttons. So here, we're just going to take care of Step 1, which is getting the value of what they typed in.
+So whenever they hit edit, the text area pops up, and then they type some text and then we have to get the value of it. So we need a way to reference that area so we can get the value of the text that they type. We guess we can give it in ID...but wait that won't work, because if they have multiple componnents, and multiple different notes, they can't all have the same ID. So can we just say components text area? Well that won't work either because we can actually have multple text areas, and what if we have a component with multiple different text areas? 
+So to solve this problem, the solution is to use Refs.
+Refs are a way that you can get a reference to one of your child elements. So whenever you need to refer to the text area's value, which is the text the user typed in, we need to give it a ref. To do that, right after text area, we add a new attribute called ref. Again, the reason using ref is better than using ID is because if you render all of these with the same ID, it won't work because you can only have a uniqe ID, in other words all of your different components have to have a different ID.
+So now what we can do is now that we have a way to reference it, let's utilize it in our save function. 
+So whatever they typed in, we'll store it in a variable val for value, which will equal "this.refs.newText" BUT if we just set it equal to that, then it will actually set it equal to the whole text area object, and that's not what we want, we actually want the value of this, so it will be "this.refs.newText.value". So the value of this is actually going to be whatever they typd inside, which in this case is Bacon.
+So now we have Bacon stored in this variable val.
+So just to test, we'll console log it, as console.log("new comment" + val), so whenever we hit save, it will just console log that. In this case it will be console.log-ing "New comment: Bacon Smacon'"
+LEFT OFF AT REACT JS TUTORIAL FOR BEGINNERS - 10 
 
