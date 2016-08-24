@@ -257,5 +257,7 @@ So now what we can do is now that we have a way to reference it, let's utilize i
 So whatever they typed in, we'll store it in a variable val for value, which will equal "this.refs.newText" BUT if we just set it equal to that, then it will actually set it equal to the whole text area object, and that's not what we want, we actually want the value of this, so it will be "this.refs.newText.value". So the value of this is actually going to be whatever they typd inside, which in this case is Bacon.
 So now we have Bacon stored in this variable val.
 So just to test, we'll console log it, as console.log("new comment" + val), so whenever we hit save, it will just console log that. In this case it will be console.log-ing "New comment: Bacon Smacon'"
-LEFT OFF AT REACT JS TUTORIAL FOR BEGINNERS - 10 
-
+This is working right now, however, challenges will pop up. What happens when we want to rearrange the notes, put them in a different order, what happens when we want to just have more control over them? The thing is, right now, we have a bunch of independent comments, now, even though we can set properties and states on them, they'all still independent, they don't know about each other. There's no way that they're connected, so whenever we try to do things like rearrange them, since they don't have any idea of each other's existence, it will be difficult for them to change order.
+So in order to have more control over them as a whole, instead of just individual comments, we need to surround them in a parent container, which is like a manager where you can manage all the pieces.
+So we're actually going to set up a "board" component, which you can think of as this blue surrounding container. This "board" component is going to be made up of all of these comments.
+LEFT OFF AT 10 2:00
