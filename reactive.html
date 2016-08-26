@@ -39,33 +39,9 @@ var Board = React.createClass({
     );
   } 
 
-})
+});
 
-// var Checkbox = React.createClass({
 
-//     getInitialState: function(){
-//       return{checked:true}
-//     },
-
-//     handleChecked: function(){
-//       this.setState({checked: !this.state.checked})
-//     },
-
-//     render: function(){
-//       var msg;
-//         if(this.state.checked){
-//           msg = 'checked'
-//         } else {
-//           msg = 'unchecked'
-//         }
-//         return(
-//           <div>
-//             <input type="checkbox" onChange={this.handleChecked} defaultChecked={this.state.checked}/ >
-//             <h3>Checkbox is {msg}</h3>
-//           </div>
-//         )
-//     }
-// });
 
 // var Bacon = React.createClass({
 //     render: function(){
@@ -89,6 +65,33 @@ var Board = React.createClass({
 //         );
 //     }
 //   });
+
+
+  // var Checkbox = React.createClass({
+
+  //   getInitialState: function(){
+  //     return{checked:true}
+  //   },
+
+  //   handleChecked: function(){
+  //     this.setState({checked: !this.state.checked})
+  //   },
+
+  //   render: function(){
+  //     var msg;
+  //       if(this.state.checked){
+  //         msg = 'checked'
+  //       } else {
+  //         msg = 'unchecked'
+  //       }
+  //       return(
+  //         <div>
+  //           <input type="checkbox" onChange={this.handleChecked} defaultChecked={this.state.checked}/ >
+  //           <h3>Checkbox is {msg}</h3>
+  //         </div>
+  //       )
+  //   }
+  // });
   
   // var Comment = React.createClass({
 
@@ -136,18 +139,20 @@ var Board = React.createClass({
   //     } else{
   //       return this.renderNormal();
   //     }
-  //   }
+  //   },
 
-  //   // render: function(){
-  //   //   return(
-  //   //     <div className="commentContainer">
-  //   //       <div className="commentText">{this.props.children}</div>
-  //   //       <button onClick={this.edit} className="button-primary">Edit</button>
-  //   //       <button onClick={this.remove} className="button-danger">Remove</button>
-  //   //     </div>
-  //   //     );
-  //   // }
+  //   render: function(){
+  //     return(
+  //       <div className="commentContainer">
+  //         <div className="commentText">{this.props.children}</div>
+  //         <button onClick={this.edit} className="button-primary">Edit</button>
+  //         <button onClick={this.remove} className="button-danger">Remove</button>
+  //       </div>
+  //       );
+  //   }
   // });
+
+
 
   // ReactDOM.render(
   // <div>
@@ -183,13 +188,22 @@ var Board = React.createClass({
 
 
 
-
+ 
+  
   <script src="https://npmcdn.com/react@15.3.0/dist/react.min.js"></script>
   <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script> <!-- older transpiler 5.8.24 works with this app-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script> <!-- older transpiler 5.8.24 works with this app
 
 </body>
 </html>
+<!--***Excerpt of advice from YouTube: The easiest way to set up your project is to make a directory tree structure the way it's displayed on his sublime text editor.  If you can't make out the structure, do this:  create your project folder; inside the project folder create a 'src' folder; inside the 'src' folder, create a 'js' folder.  You will now create four files.  Create two empty files,  'package.json' and a 'webpack.config.js', and place them at the top level of your project folder.  Create another empty file, 'index.html' and put it inside your 'src' folder.   Create the last file, 'client.js' and place it inside 'js' folder.
+
+Now advance the video to 3:04 and simply type what you see into your 'client.js' file.  As for the contents of the other three files, you can go to the github repository he listed in the  comments under the video.  Specifically, you will need to access the '1-basic-react' folder to get the contents of each the other three files.  
+
+After you have set up your folders and copied the files, you run 'npm install', then 'webpack',  and the rest of the folders and files will be automatically installed.  At this point you can advance to '2:38' in  the video and continue following along.  Hope this helps you and anyone else who might have the same question.﻿***-->
+
+
 
 <!-- first need react.js cdn and also react-dom.js cdn
 then we need the babel transpiler because React is written in JSX, JSX is not understood by the browser which only understands JS, so the transpiler translates the JSX into JS to be understood by the browser, in this case an older transpiler of babel 5.8.24 works with this app-->
@@ -298,4 +312,4 @@ And now whenever we render at the original render, we just have to insert "<Boar
 And insead of actually rendering the text comments in between the Comment tags as in "<Comment>Hey my name is Marco<Comment/>", etc., we'll actually be making comments based on the array in the coments array as in "comments: [ "I like bacon", "Want to get ice cream?", "Okay, we've got enough comments now."]" We pretty much have to take this array, loop through it and for each item in it, we want to stick it inside where comment in the "<Comment><Comment/>" tags inside the render function are, wihch we will be replacing with this.
 So what we're going to do, is in order to that in JavaScript, if you're not familiar with mapping is we first need a reference to the comments array inside the getInitialState function. Now remember, it's a state, it's not a property, and the reason it's a state is because it's going to change. So we do this by typing "this.state.comments" and we can actually call a function called "map", so we type "this.state.comments.map()" Now whenever we use map, what we can do is we can throw in a function inside it and it will call it for each element in the array. We type this as "this.state.comments.map(function(){})" So whatever function we write right here, it's going to call it on "I like bacon", "Want to get ice cream?", and "Okay, we've got enough comments now." Now the parameters for this function are "text, I" as in "this.state.comments.map(function(text, i){})"
 Like we said, this map function will take the comments array and it will loop through it and for each item, it will treat the text as item, well we'll change it to text (the item), and the counter will be i, so 0 then 1, then 2, then 3, so on and so forth. So for each of these iterations, what we want to do is just create a new comment. So we'll type "return(<Comment><Comment/>)" Now whenever we make a comment, all we do is we add the text in between, as in "return(<Comment>{text}<Comment/>"  Now this will work fine, however, there's one issue. Right now we're just creating a bunch of comments, but we still don't really have a unique way to identify each one. The reason we set up this new archicture is because we wanted this "board" to be a manager for all of the comments. So in order to have control over all these comments, we need to give them a unique identifier. Now the main way that we do this, is we use a key. So in REACT, a key is a unique way to identify each child. You can actually give it an ID, or an ID number, etc., but this is kind of the standard way. We'll go over the other ways, that can be trickier later, but for right now this is it and there we go. So we type it this way as in, "return(<Comment key={i}>{text}<Comment/>)" So again, we made a board, and all this board did is it took an array, and for each item in the array, it generated a comment. So now, this board actually owns all of these comments.
-RAN INTO ISSUE WITH "var Board = React.createClass({...})" THIS SYNTAX IS EXACTLY AS IN TUTORIAL AT VID 10 BUT IT'S THROWING AN ERROR
+RAN INTO ISSUE WITH "var Board = React.createClass({...})" THIS SYNTAX IS EXACTLY AS IN TUTORIAL AT VID 10 BUT IT'S THROWING AN ERROR 

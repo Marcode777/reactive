@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>reactive</title>
+</head>
+<body>
+
+<div id="example">
+  
+</div>
+
+<div id="container">
+
+</div>
+<script type="text/babel">
+
+// var Comment = React.createClass({...});
+
+var Board = React.createClass({
+  getinitialState: function(){
+    return{
+      comments: [
+        "I like bacon.",
+        "Want to get ice cream?",
+        "Okay, we've got enough comments now."
+      ]
+    }
+  },
+  render: function() {
+      return(
+        <div className="board">
+          {
+            this.state.comments.map(function(text, i){
+              return(<Comment key={i}>{text}</Comment>);
+            })
+          }
+         
+        </div>
+    );
+  } 
+
+});
+
+
+
+// var Bacon = React.createClass({
+//     render: function(){
+//       return(
+//         <div>
+//           <h2>This is a component.</h2>
+//           <p>Yup</p>
+//         </div>
+//         );
+//     }
+//   });
+
+// var Movie = React.createClass({
+
+//     render: function(){
+//       return(
+//         <div>
+//           <h1>{this.props.title}</h1>
+//           <h2>{this.props.genre}</h2>
+//         </div>
+//         );
+//     }
+//   });
+
+
+  // var Checkbox = React.createClass({
+
+  //   getInitialState: function(){
+  //     return{checked:true}
+  //   },
+
+  //   handleChecked: function(){
+  //     this.setState({checked: !this.state.checked})
+  //   },
+
+  //   render: function(){
+  //     var msg;
+  //       if(this.state.checked){
+  //         msg = 'checked'
+  //       } else {
+  //         msg = 'unchecked'
+  //       }
+  //       return(
+  //         <div>
+  //           <input type="checkbox" onChange={this.handleChecked} defaultChecked={this.state.checked}/ >
+  //           <h3>Checkbox is {msg}</h3>
+  //         </div>
+  //       )
+  //   }
+  // });
+  
+  // var Comment = React.createClass({
+
+  //   getInitialState: function(){
+  //     return{editing:false}
+  //   },
+
+  //   edit: function(){
+  //     // alert("editing comment");
+  //     this.setState({editing:true});
+  //   },
+  //   remove: function(){
+  //     console.log("removing comment");
+  //     // alert("removing comment");
+  //   },
+
+  //   save: function(){
+  //     var val = this.refs.newText.value;
+  //     console.log("New comment:"+ val);
+  //     this.setState({editing:false});
+  //   },
+
+  //   renderNormal: function(){
+  //     return(
+  //       <div className="commentContainer">
+  //         <div className="commentText">{this.props.children}</div>
+  //         <button onClick={this.edit} className="button-primary">Edit</button>
+  //         <button onClick={this.remove} className="button-danger">Remove</button>
+  //       </div>
+  //       );
+  //   },
+
+  //   renderForm: function(){
+  //     return(
+  //       <div className="commentContainer">
+  //         <textarea ref="newText" defaultValue={this.props.children}></textarea>
+  //         <button onClick={this.save} className="button-success">Save</button>
+  //       </div>
+  //       );
+  //   },
+
+  //   render: function(){
+  //     if(this.state.editing){
+  //       return this.renderForm();
+  //     } else{
+  //       return this.renderNormal();
+  //     }
+  //   },
+
+  //   render: function(){
+  //     return(
+  //       <div className="commentContainer">
+  //         <div className="commentText">{this.props.children}</div>
+  //         <button onClick={this.edit} className="button-primary">Edit</button>
+  //         <button onClick={this.remove} className="button-danger">Remove</button>
+  //       </div>
+  //       );
+  //   }
+  // });
+
+
+
+  // ReactDOM.render(
+  // <div>
+  //   <Bacon/>
+  //   <Bacon/>
+  //   <Bacon/>
+  //   <Movie title="Avatar" genre="sci-fi action"/>
+  //   <Movie title="Vanilla Sky" genre="analytical thriller romance"/>
+  //   <Movie title="The Matrix" genre="analytical thriller"/>
+  //   <Movie title="Inception" genre="analytical thriller"/>
+  //   <Movie title="The Secret Life of Pets" genre="feel-good"/>
+  // </div>, document.getElementById('example'));
+
+
+  // ReactDOM.render(
+  // <div className="board">
+  //   <Comment> Hey name is Marco.</Comment>
+  //   <Comment> Beans</Comment>
+  //   <Comment> Tuna</Comment>
+  //   <Checkbox/>
+  // </div>, 
+  //   document.getElementById('container'));
+
+  ReactDOM.render(<Board/>, document.getElementById("container"));
+
+  
+
+</script>
+
+
+
+
+
+
+
+ 
+  
+  <script src="https://npmcdn.com/react@15.3.0/dist/react.min.js"></script>
+  <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.js"></script> <!-- older transpiler 5.8.24 works with this app
+
+</body>
+</html>
+<!--***Excerpt of advice from YouTube: The easiest way to set up your project is to make a directory tree structure the way it's displayed on his sublime text editor.  If you can't make out the structure, do this:  create your project folder; inside the project folder create a 'src' folder; inside the 'src' folder, create a 'js' folder.  You will now create four files.  Create two empty files,  'package.json' and a 'webpack.config.js', and place them at the top level of your project folder.  Create another empty file, 'index.html' and put it inside your 'src' folder.   Create the last file, 'client.js' and place it inside 'js' folder.
+
+Now advance the video to 3:04 and simply type what you see into your 'client.js' file.  As for the contents of the other three files, you can go to the github repository he listed in the  comments under the video.  Specifically, you will need to access the '1-basic-react' folder to get the contents of each the other three files.  
+
+After you have set up your folders and copied the files, you run 'npm install', then 'webpack',  and the rest of the folders and files will be automatically installed.  At this point you can advance to '2:38' in  the video and continue following along.  Hope this helps you and anyone else who might have the same question.﻿***-->
+
+
+
+<!-- first need react.js cdn and also react-dom.js cdn
+then we need the babel transpiler because React is written in JSX, JSX is not understood by the browser which only understands JS, so the transpiler translates the JSX into JS to be understood by the browser, in this case an older transpiler of babel 5.8.24 works with this app-->
+<!-- script tag where React code will be written will have type="text/babel"
+-->
+<!--Render basically takes a bit of html and places it into a target where you want to display it, in this case, the id="example"
+the first parameter is just html, in this case, h1, this is also basically our React component
+the next parameter and the only other one it takes is where we're going to display this, in this case the div with the id of example, via document.GetElementById which will take our React code which in this case is h1 Marco and display into the div with the id of example-->
+<!-- Components are just part of the website, anything that's part of a website that's made with React are made with components, so the entire app is made up of components (just different parts of the webpage)
+to make a component is via making a variable ___ = React.createClass and inside that is where we actually create the component, since a component is just essentially part of the website, all it is, is pretty much html
+so in this case, all it needs to do is return some html, we do this with a function called render, in this case we're returning an h2 component
+so whenever we use the component Bacon, it displays an h2
+so now we want to substitute the h1 Marco with the component Bacon to display an h2, we literally just substitute the component Bacon in a self-closing tag form <Bacon/> and it will display the h2
+so now the component Bacon will the h2 in the target element id="example"
+Basically the entire application will be made up of individual parts called components.
+At the heart of a component, it essentially just returns a chunk of html-->
+<!--Now for returning multiple components...
+Be mindful of the fact that every single component can only return 1 parent element. For example, you cannot use an h1 and a p1 within the same component. 
+To achieve being able to use multiple parent elements in 1 component, they must be wrapped in a div, because now we're only returning 1 parent element, in this case the div that they're wrapped in.
+Also, a render can only essentially display 1 parent element as well. So if we want to display multiple components, we have to wrap them in a div parent element. Now we can have multiple Bacon components rendered-->
+<!--***sidenote that I discovered: even if you comment out certain syntax like components, they are still recognized and can throw an error, I guess because it's in ES6 even though it's being transpiled
+*** Also be sure to define components before calling them to be rendered on the DOM, or else they will be undefined.-->
+<!--Now properties allow you to customize your components.
+A good example of this is if you wanted to make this application like NetFlix, or any application that you wanted to display movies, of course you don't want to make a component to display a movie, and then have to make another different component to display a different movie that had a different title, etc. You would basically want to make the blueprint or a template for one component and customize it in different ways, which is what properties allow you to do.
+So you can actually add attributes to the component. In this case we add the title="Avatar" attribute to the Movie component h1 and also a genre="action" attribute to Movie component h2 and we display them by typing them in curly {} braces and accessing them through this.props.___ so for the title, we type this.props.title and also for genre we type this.props.genre
+So now if we want to display 5 different movies, we could render 5 different components and each of these components have different properties
+
+EventHandling: Here we'll try to create a "sticky note app" where the user can add new notes, delete or edit notes, sort of like my contactbook app. 
+We create a new component via a variable = comment, which is going to essentially a block that will have text on it depending on the comment, which will have a button for editing and deleting it. We'll have some dummy data by putting some static image just to make sure it works and is displayed how we want it to. This whole thing will be in a div, with, in this case, our pre-made style called commentContainer, so for the class name, it's set = to commentContainer. 
+Note that we can add attributes in JSX just like we would in normal HTML, however, the reason we can't use class here is because class is already a reserved keyword in JavaScript. Because in JavaScript, class actually means something. So in JSX, we use className. So most of your other attributes will be fine just like normal HTML, but sometimes, if they clash with JavaScript, it could be because of JSX.
+So now inside this comment div will be another div which will just be text of whatever, and two buttons.
+We'll give the div with text a className of commentText. All it does is it makes it bold and gives some spacing between the text and buttons. Now the button classes, the edit button will have className = button-primary, and the remove button will have className = button-danger, which were already premade. 
+Now what we need to do is make something happen whenever the user clicks the buttons. So before we can add an on-click attribute, we actually need to make functions, because essentially we're going to say that whenever you click this, call a function.
+Now we already have a function called render, which is the function responsible for displaying HTML. But we can actually make our own custom functions and make them whatever we want. So under the Comment component, we'll make one called edit, which is just equal to a function, which can do whatever we want. Right now, we'll keep thing simple and make an alert pop-up that says "editing comment". We'll also make a remove function with the appropriate pop-up as well.
+So right now we have an edit function and a remove function which will display a pop-up whenever they are called. 
+Now we need to link the buttons to the functions. We do this by adding another attribute called onClick, keep in mind the curly braces. So how do we do that? Well, since this is a function from the same class, we just need to type this, a dot separator and then the function name, as in this.edit 
+The same goes for the remove button.
+Now we need to render this. Now we're taking all these comments and surrounding them inside a board div, which is just for styling to give it a color background. So now, whenever we want to write a new comment, it will be in the Comment components.
+So now when we click the edit or remove buttons, we get an alert pop-up that states "editing comment" or "removing comment". So now we know that our event handlers are working properly.
+Now from here, instead of just having the static text in className ="commentText", we actually want to take whatever text is in between the Comment tags and take that and display it in the "commentText" of the Comment component for the comment. 
+So now we have "hey name is Bucky", "Beans" and "Tuna" just to have 3 different comments in the Comment tags. 
+So to access the data in the Comment tags to be able to use them in the className="commentText" of the Comment compnonent, remember that any data that is in between the opening tag and closing tags of the Comment components within the className="board" divs are called children. 
+Remember that whenever we want to use properties, we just use this.props and then the name of the property as in this.props.children 
+So now we change the "Text of whatever" text in between the commentText tags in the Comment component  and replace it with curly braces this.props.children as in {this.props.children}
+So the commentText now gets the children, which are the static text in between the Comment tags, and for each Comment component render, displays them in between the div tags with class="commentText".
+
+So in summary, we have done event handling, in which we can create custom functions,and whenever something happens, in this case clicking on the buttons, the functions are called upon by onClick (or some other event handler, however, in this case, we use onClick).
+We have also covered how to pass data in between the tags, in this case, the Comment tags, and access them through the children property.
+
+Next is State. States are a way to customize components, which you can also do with properties, however, the difference is that states can change. For example, if you give a component a custom property, whenever you create it, it's set for its life. For example, if you create a button with a property that makes it green, it will be green for the rest of its life. 
+Now if you wanted to make a button could change colors everytime the user hovered over it, properties can't be used for that, because their values can't change. Whenever you have a value that needs changing on your component, you need to use state. So basically, whenever you want something to stay the same, you use properties; whenever you want something that changes, you need to use states. 
+So now we're going to make a component named checkbox. Because whenever we have a checkbox, it can be checked or unchecked. Since this bit of text is going to change, we will use state instead of property.
+So for the message which will be equal to "checked" or "unchecked", we'll use if statements.
+The way we access states are pretty much the same as properties, however, instead of props, we just use state, as in "this.state.____". So it will be "this.state.checked" and we're going to say that this can be either true or false. So if it's checked, then the msg = 'checked' and else msg 'unchecked'.
+Before we go further in creating this component and rendering the html, we will build another function to show how to set the initial value of a state.
+There is a built-in function called getInitialState(), so whenever you call this function, its job is to set the initial state of your component.
+It returns an object of your states. Now we're only going to have one state in here, which is checked, now we can set this equal to true or false to start with, however, we're just going to set this equal to true just because we feel like it. 
+We're going to set it up where whenever this is true, then that means that the user has a checkbox checked, if it's false, then it means that they didn't check it, so it's good for filling out forms and stuff like that. Right now we have one state ,checked and it's equal to true. And if you want to add another one, called something like Bacon and set it equal to 32, you can. You can add as many states as you want.
+So now that we have a state variable, what we can do now is actually return some html. 
+So we're going to have a checkbox and some text below it, so since we're going to have multiple elements, we need to wrap them inside a parent div. And for the input the type will be "checkbox". We're going to make it simple and basic at first just so we have something on the screen that works and then later we can do more sophisticated things. 
+So this will be the checkbox, and it's a valid checkbox right now, and beneath it we'll say "checkbox is" and it will either say checked or unchecked. In order to do that, all we need to do is to output the variable which is msg in brackets.
+Now to actually render this, we place it into the render function by placing the Checkbox component into the ReactDom.render function. This will place it into the whole div with class "container", before in the previous examples, we were placing Comment components into the whole div with class "example" in the ReactDom.render function with document.getElementByID.
+  ***note that the syntax for return when using booleans is with curly brackets as in "return{checked:true}" and with just parentheses for actually just return as in returning something as "return(<div><input type="checkbox"/></div)"***
+Right now it says checkbox is checked. Why is it saying that even though it's not checked? It's because we didn't add any logic yet. It's because we just went ahead and rendered this component and the initial state of checked is equal to true. If it was set to false, then it would say checkbox is unchecked. So it's working. 
+Now we actually have to add the logic to make it work correctly.
+You see that whenever we load the page for the very first time, the default behavior of html and chrome is to have the actual checkboxes(not what the message is saying, but the actual checkboxes), unchecked. 
+Well we can actually override that value with a built-in value called defaultChecked where checked, in input type, can actually be set to true or false, by typing it in. However, what we want to set it equal to is the state of the checkbox, whether it's checked or unchecked, or true or false. We do that by accessing the state variable via this.state.checked or vice versa.
+*So now, when the message is saying it's unchecked, the actual checkbox will also be unchecked, and when the message is saying it's checked, the actual checkbox will also be checked. So both are now working congruently and concurrently.*
+Now we have one more bit of logic to work out. That is we want to say that whenever the user clicks the actual checkbox, we want the message, in the curly brackets, {} to change.
+We do that again, with eventhandlers, however, instead of onClick, it will use onChange, and that gets called whenever the user clicks on the actual checkbox, whenever they check it or whenever they uncheck it. 
+So in the input, we'll type "onChange=(this.handleChecked)", we're also going to have to build a function for it.
+So now we build a function called handleChecked for it.
+So now with this function, what we want to do is whenever the use checks the checkbox, we want to set the state of the checked, which is either true or false, and we want to set it equal to the opposite of what it was before. We say that because if it's checked and they clicked it, then we want to set it to false, if it already is false and they checked it, then we want to set it to true. 
+Now to do that, whenever we want to change the state of a component variable, we use "this.setState({})". This takes an object and sets its state. So here, instead of just passing in the value of checked, we'll take the current value of checked and make it the opposite. All we do is take "this.state.checked" and set an exclamation point to it to make it the opposite as in "this.set.State({checked: !this.state.checked})". So in summary, when we click this, it's going to get the current state of the checkbox if it's checked or not, and then it will set the new state equal to the opposite of it. So this way, whenever the checkbox is unchecked, the msg will also say it's unchecked, and whenever the checkbox is checked, the msg will also it's checked.
+***An important thing to note is that, whenever you check it or uncheck, why does it automatically re-render already? In most programs, and even before in this app, I had to refresh the page in order to see the new results. A great thing about REACT is that we don't need to explicitly say that whenever a state changes, it has to refresh a certain part of the page. REACT automatically watches for states and where they can change, and whenever the states change, that part of the webpage is automatically refreshed.***
+So in summary, state is a lot like property, however, properties cannot change dynamically, a property set to something is that property like a background color, it remains that way unless you change the code. States can change dynamically, as in the state of a checkbox.
+Adding State to Components: 
+**remember there are two separate targets in document.getElementById, they are "container" and "example" 
+Back to the sticky note program, we are going to apply states to it. We want two different modes, a normal, default mode where things are static the way they are, and an editing mode, whenever the user clicks the edit button, instead of just having static text, a form will be displayed where they can edit the comment, write a new comment, so on and so forth. So basically we'll have the sticky note program switch between two differet modes, or states. 
+To do this, whenever we want to use state, the first thing we need is that "getInitialState" function. By default, we're going to have this out of editing mode and in normal, default mode. Because whenever the user first loads this webpage, we don't want forms popping out, we just want the default text. So we're going to have the editing state set to false as in "return{editing:false}".
+So, to think about the logic, the first thing is that whenever the user clicks the edit button, then the edit callback is called. So what we want to do in terms of state is, that whenever they click the edit button, we want to set editing to true instead of false, obviously. So in the edit function we use "this.setState({editing:true})" Now we just change the remove function alert to a console log just because they're annoying.
+So now in normal mode, when they click edit, they enter the editing mode, however, we don't want the edit button still there because they're already editing, so we're going to have another button that says save, so whenever they're editing and they're done, they can click save and it will save the text. So we're going make another function, which will be called save, and all it's going to do for the moment is it's going to set editing equal to false. So whenever they're done editing, they'll click save and it will take them out of editing mode.
+Now on the render function, it's currently displaying the default mode, however, in editing mode we want it to display a different setting where it displays a form so the user can edit the text.
+So what we can do is actually make two different functions, we'll call them renderForm and renderNormal. Now we've created the rendernormal function.(at this point, i've commented out the render function from the previous examples) Now we've also created the renderForm function which has a "<textarea></textarea>" set of tags, we want to give it a default text of whatever the comment is. So to do that, all we have to do is say "defaultValue" and set it equal to "{this.props.children}" from the commentText div from renderNormal. And also instead of the standard buttons of edit and remove, we just want a save button, and for its onClick, instead of continuing to be in the editing mode, we want to save our text so we change it from '{this.edit}' to '{this.save}'. So when that happens, it will call save and it will change your mode to normal mode, and take you out of editing mode. 
+Now the last thing that we want to do for this...you see these are just custom functions right here, we actually didn't even call them yet, whenever we actually use the component, it always looks for this function called render. So inside it, we just have to write a little bit of logic and it's just going to say if you are in editing mode, display this, if not, display this. 
+So we have the displays taken care of. However, we still have one more issue, and it's whenever the user actually edits the text and clicks save, it actually doesn't change the text. We'll work on that next.
+LEFT OFF AT REACT  - 9 - refs
+Whenever the user edits the comments, we want to allow them to pretty much type some new comment in the commeent form and then hit save, and i will save and it'll save it.
+So the action is actually divided into two parts in our code. So the first first thing we're going to need to do is we're going to get the value of whatever they typed in whenever they hit save, this is Step 1.
+Then Step 2 is we'll be taking that value and setting it equal to this chunk of text right there on top of the buttons. So here, we're just going to take care of Step 1, which is getting the value of what they typed in.
+So whenever they hit edit, the text area pops up, and then they type some text and then we have to get the value of it. So we need a way to reference that area so we can get the value of the text that they type. We guess we can give it in ID...but wait that won't work, because if they have multiple componnents, and multiple different notes, they can't all have the same ID. So can we just say components text area? Well that won't work either because we can actually have multple text areas, and what if we have a component with multiple different text areas? 
+So to solve this problem, the solution is to use Refs.
+Refs are a way that you can get a reference to one of your child elements. So whenever you need to refer to the text area's value, which is the text the user typed in, we need to give it a ref. To do that, right after text area, we add a new attribute called ref. Again, the reason using ref is better than using ID is because if you render all of these with the same ID, it won't work because you can only have a uniqe ID, in other words all of your different components have to have a different ID.
+So now what we can do is now that we have a way to reference it, let's utilize it in our save function. 
+So whatever they typed in, we'll store it in a variable val for value, which will equal "this.refs.newText" BUT if we just set it equal to that, then it will actually set it equal to the whole text area object, and that's not what we want, we actually want the value of this, so it will be "this.refs.newText.value". So the value of this is actually going to be whatever they typd inside, which in this case is Bacon.
+So now we have Bacon stored in this variable val.
+So just to test, we'll console log it, as console.log("new comment" + val), so whenever we hit save, it will just console log that. In this case it will be console.log-ing "New comment: Bacon Smacon'"
+This is working right now, however, challenges will pop up. What happens when we want to rearrange the notes, put them in a different order, what happens when we want to just have more control over them? The thing is, right now, we have a bunch of independent comments, now, even though we can set properties and states on them, they're all still independent, they don't know about each other. There's no way that they're connected, so whenever we try to do things like rearrange them, since they don't have any idea of each other's existence, it will be difficult for them to change order.
+So in order to have more control over them as a whole, instead of just individual comments, we need to surround them in a parent container, which is like a manager where you can manage all the pieces.
+So we're actually going to set up a "board" component, which you can think of as this blue surrounding container. This "board" component is going to be made up of all of these comments.
+This board component is going to be made up of all of these comments, and since it's set up that way, it will be aware of every single comment on it, so now we can move them around, remove them, rearrange them, and it is a much better system instead of just having a bunch of standalone objects.
+So we make a variable "Board" and we can make as many comments as we want in the variable "Comment", and we're going to have one "Board". We do this by doing "React.createClass({})" and inside is going to be an array, which will essentially be equal to each comment. So essentially, in the "Board", we're going to be able to reference each individual comment and manage them all in that way. Inside it we will have "getInitialState: function(){return...}" and all this is going to do is it's going to return an array of comments. So again, we can have as many states as we want, but this will just be a simple example. So I'll just add three comments in this array.
+So our initial state is essentially just an array with three strings of text. So remember, whenever we actually make a comment component, all we do is we just comment and then we put a string of text right here, e.g. "<Comment> 'String of text right here"<Comment/>" so it will be really easy.
+So now, let's go ahead and actually make those. Remember, whenever we make it, we have to use the "render" function. And again, if we have multiple functions, we have to separate them with a comma. This is going to be responsible for returning whatever html that we want to draw. So the first thing we're going to do is make a div that will represent the entire board. What we can actually do is just take the original "<div className=board>" etc... and copy it into the render function (different from the original render from ReactDom.render, excluding the "<Checkbox/>".
+And now whenever we render at the original render, we just have to insert "<Board/>" as in "ReactDOM.render(<Board/>, document.getElementById("container"));"
+And insead of actually rendering the text comments in between the Comment tags as in "<Comment>Hey my name is Marco<Comment/>", etc., we'll actually be making comments based on the array in the coments array as in "comments: [ "I like bacon", "Want to get ice cream?", "Okay, we've got enough comments now."]" We pretty much have to take this array, loop through it and for each item in it, we want to stick it inside where comment in the "<Comment><Comment/>" tags inside the render function are, wihch we will be replacing with this.
+So what we're going to do, is in order to that in JavaScript, if you're not familiar with mapping is we first need a reference to the comments array inside the getInitialState function. Now remember, it's a state, it's not a property, and the reason it's a state is because it's going to change. So we do this by typing "this.state.comments" and we can actually call a function called "map", so we type "this.state.comments.map()" Now whenever we use map, what we can do is we can throw in a function inside it and it will call it for each element in the array. We type this as "this.state.comments.map(function(){})" So whatever function we write right here, it's going to call it on "I like bacon", "Want to get ice cream?", and "Okay, we've got enough comments now." Now the parameters for this function are "text, I" as in "this.state.comments.map(function(text, i){})"
+Like we said, this map function will take the comments array and it will loop through it and for each item, it will treat the text as item, well we'll change it to text (the item), and the counter will be i, so 0 then 1, then 2, then 3, so on and so forth. So for each of these iterations, what we want to do is just create a new comment. So we'll type "return(<Comment><Comment/>)" Now whenever we make a comment, all we do is we add the text in between, as in "return(<Comment>{text}<Comment/>"  Now this will work fine, however, there's one issue. Right now we're just creating a bunch of comments, but we still don't really have a unique way to identify each one. The reason we set up this new archicture is because we wanted this "board" to be a manager for all of the comments. So in order to have control over all these comments, we need to give them a unique identifier. Now the main way that we do this, is we use a key. So in REACT, a key is a unique way to identify each child. You can actually give it an ID, or an ID number, etc., but this is kind of the standard way. We'll go over the other ways, that can be trickier later, but for right now this is it and there we go. So we type it this way as in, "return(<Comment key={i}>{text}<Comment/>)" So again, we made a board, and all this board did is it took an array, and for each item in the array, it generated a comment. So now, this board actually owns all of these comments.
+RAN INTO ISSUE WITH "var Board = React.createClass({...})" THIS SYNTAX IS EXACTLY AS IN TUTORIAL AT VID 10 BUT IT'S THROWING AN ERROR 
